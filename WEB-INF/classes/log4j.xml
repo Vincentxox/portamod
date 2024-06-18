@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration
+	xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="console"
+		class="org.apache.log4j.ConsoleAppender">
+		<param name="ImmediateFlush" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%p] %d [%t] %x %c{2} %M - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="debug"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/u01/app/oracle/logs/ReintentosPortaSV/debug.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="5MB" />
+		<param name="MaxBackupIndex" value="20" />
+		<param name="Threshold" value="DEBUG" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%p] %d %x %c{2} %M - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="error"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="/u01/app/oracle/logs/ReintentosPortaSV/error.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="4MB" />
+		<param name="MaxBackupIndex" value="10" />
+		<param name="Threshold" value="ERROR" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="[%p] %d [%t] %x %c{2} %M - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.ericsson" additivity="true">
+		<level value="DEBUG" />
+		<appender-ref ref="console" />
+		<appender-ref ref="debug" />
+		<appender-ref ref="error" />
+	</logger>
+
+</log4j:configuration>
