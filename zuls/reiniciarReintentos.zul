@@ -1,0 +1,228 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./wdwReiniciarReintentosController" ?>
+<zk xmlns:n="native">
+	<window apply="com.ericsson.controller.ReiniciarReintentosController"
+		id="wdwReiniciarReintentosController"
+		class="panel panel-default panel-data">
+		<custom-attributes composerName="composer" />
+		<div class="panel-heading">
+			<n:h4>Reingresar portabilidad</n:h4>
+		</div>
+		<div class="panel-body">
+			
+	<tabbox id="tb" height="300px" onSelect="alert(self.getSelectedPanel().getId())" >
+	<attribute name="onSelect"><![CDATA[
+	                                    System.out.println("1"+self.getSelectedPanel().getId());
+    ]]></attribute>
+    <tabs id="tabs">
+        <tab id="Especifico" label="Especifico">
+        <attribute name="onSelect"><![CDATA[
+ 
+groupOperaciones.setVisible(true);
+divHist.setVisible(true);
+dbIni.setText("");
+dbFin.setText("");
+radioGroup.setSelectedIndex(2);
+
+
+    ]]></attribute>
+     </tab>
+        <tab id="General" label="General">
+               <attribute name="onSelect"><![CDATA[
+ 
+groupOperaciones.setVisible(true);
+divHist.setVisible(true);
+txtNumeroPortar.setValue("");
+radioGroup.setSelectedIndex(2);
+    ]]></attribute>
+    </tab>
+        <tab id="Masivo" label="Masivo">
+               <attribute name="onSelect"><![CDATA[
+dbIni.setText("");
+dbFin.setText(""); 
+groupOperaciones.setVisible(false);
+divHist.setVisible(false);
+txtNumeroPortar.setValue("");
+radioGroup.setSelectedIndex(2);
+    ]]></attribute>
+    </tab>
+        
+    </tabs>
+    <tabpanels height="280px">
+        <tabpanel>
+        <n:br/>
+        <n:br/>
+        <groupbox class="col-xs-12">
+									<caption class="preview-caption"
+										label="Numeros" />
+									<div class="col-xs-12">
+										<div class="col-xs-3">
+											<n:h5>
+												Numero a portar:
+											</n:h5>
+										</div>
+										<div class="col-xs-3">
+											<textbox
+												id="txtNumeroPortar" class="form-control btn-details" type="tel"
+												maxlength="10" />
+										</div>
+										
+									</div>
+								</groupbox>
+        </tabpanel>
+        <tabpanel>
+        <groupbox class="col-xs-12">
+									<caption class="preview-caption"
+										label="Fechas" />
+									<div class="col-xs-12">
+										<div class="col-xs-2">
+											<n:h5>Inicio:</n:h5>
+										</div>
+										<div class="col-xs-3">
+											<datebox id="dbIni"
+												constraint="no future:No es posible seleccionar una fecha en el futuro" />
+										</div>
+										<div class="col-xs-1">
+											<n:h5>Fin:</n:h5>
+										</div>
+										<div class="col-xs-3">
+											<datebox id="dbFin"
+												constraint="no future:No es posible seleccionar una fecha en el futuro" />
+										</div>
+									</div>
+									
+								</groupbox>
+									<groupbox class="col-xs-12">
+									<caption class="preview-caption"
+										label="Tipo Producto" />
+										<div class="col-xs-12">
+										<radiogroup id="radioGroup">
+									<radio id="ra1" label="Prepago" radiogroup="radioGroup" />
+                <radio id="ra2" label="Postpago" radiogroup="radioGroup" />
+                <radio id="ra3" label="Todos" radiogroup="radioGroup" selected="true" />
+                				</radiogroup>
+                				</div>
+						</groupbox>	
+        </tabpanel>
+        <tabpanel>
+          <n:br/>
+        <n:br/>
+        <groupbox id="gbMasivo" class="col-xs-12">
+						<caption class="preview-caption"
+							label="Masivo" />
+						<div class="row">
+						
+						<div class="col-xs-2" align="center">
+								<button id="btnSeleccionarTextFile"
+									type="button" class="btn btn-primary btn-action"
+									upload="true">
+									Seleccionar
+								</button>
+
+							</div>
+							
+							<div class="col-xs-1" align="center">
+								<label value="Archivo" />
+							</div>
+							<div class="col-xs-4">
+								<textbox readonly="true"
+									id="txtNombreArchivo" />
+							</div>
+
+						<div class="col-xs-4" align="center">
+								<button id="btnProcesarMasivo"
+									class="btn btn-primary btn-action">
+									Procesar
+								</button>
+							</div>							
+						</div>
+				</groupbox>	
+        </tabpanel>        
+    </tabpanels>
+</tabbox>
+
+
+			<div class="clearfix" height="20px" />
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row"> 
+						<groupbox id="groupOperaciones" class="col-xs-12" visible="@{composer.mostrarOperaciones}">
+							<caption class="preview-caption"
+								label="Operaciones" />
+							<div class="col-xs-12">
+								<div class="col-xs-1" />
+								<div class="col-xs-3">
+									<button id="btnSearch"
+										class="btn btn-success btn-action" label="Buscar" />
+								</div>
+								<div class="col-xs-1" />
+								<div class="col-xs-3">
+									<button id="btnClear"
+										class="btn btn-success btn-action" label="Limpiar filtros" />
+								</div>
+								<div class="col-xs-1" />
+								<div class="col-xs-3">
+									<button id="btnCreate"
+										class="btn btn-success btn-action" label="Reiniciar" />
+								</div>
+							</div>
+						</groupbox>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix" height="20px" />
+			<textbox
+												id="txtCheck" class="form-control btn-details"
+												maxlength="10" visible="false" value="false"/>
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row" id="divHist" visible="false">
+						<listbox id="listHistorial"  checkmark="true"
+							model="@{composer.listHist}" class="records" mold="paging"
+							pageSize="5" multiple="true" nonselectableTags="">
+							 <custom-attributes org.zkoss.zul.listbox.rod="false"/>
+							<attribute name="onCheckSelectAll"><![CDATA[
+        if (event.isChecked()) {
+        	txtCheck.setValue("true");
+            
+        } else {
+        	txtCheck.setValue("false");
+        }
+    ]]></attribute>
+							<listhead>
+								<listheader label="NUMERO PORTAR"
+									sort="auto" align="center" />
+								<listheader label="OPERADOR"
+									sort="auto" align="center"  width="75px"/>	
+								<listheader label="MOTIVO RECHAZO"
+									sort="auto" align="center" width="350px" />
+								<listheader label="ID PORTABILIDAD"
+									sort="auto" align="center" />
+								<listheader label="DISTRIBUIDOR"
+									sort="auto" align="center" />			
+								<listheader label="EJECUTIVO"
+									sort="auto" align="center" />
+							</listhead>
+							<listitem self="@{each='listHist'}"
+								value="@{listHist}">
+								<listcell
+									label="@{listHist.NUMEROPORTAR}" />
+								<listcell
+									label="@{listHist.OPERADORDONANTE}" />									
+								<listcell
+									label="@{listHist.SPNOBSERVACION}" />
+								<listcell
+									label="@{listHist.IDPORTABILIDAD}" />
+									
+								<listcell
+									label="@{listHist.DISTRIBUIDOR}" />	
+								<listcell
+									label="@{listHist.EJECUTIVO}" />	
+								
+							</listitem>
+						</listbox>
+					</div>
+				</div>
+			</div>
+		</div>
+	</window>
+</zk>

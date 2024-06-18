@@ -1,0 +1,196 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./wdwMantenedorConfiguraciones" ?>
+<zk xmlns:n="native">
+	<window
+		apply="com.ericsson.controller.ManenedorConfiguracionesController"
+		id="wdwMantenedorConfiguraciones"
+		class="panel panel-default panel-data">
+		<style>
+			.erroresLabel { color:#C8FE2E; font-size:18px;
+			font-weight:bold; }
+		</style>
+		<custom-attributes composerName="composer" />
+		<div class="panel-heading">
+			<n:h4>Mantenedor de Configuraciones</n:h4>
+		</div>
+		<div class="panel-body">
+			<div class="row" visible="false">
+				<div class="col-xs-12">
+					<div class="row">
+						<groupbox class="col-xs-12" visible="false">
+							<caption class="preview-caption"
+								label="Filtros" />
+							<div class="col-xs-2">
+								<n:h5>Agrupación:</n:h5>
+							</div>
+							<div class="col-xs-4">
+								<textbox id="txtAgrupacion"
+									class="form-control btn-details" maxlength="64" />
+							</div>
+							<div class="col-xs-2">
+								<n:h5>Nombre:</n:h5>
+							</div>
+							<div class="col-xs-4">
+								<textbox id="txtNombre"
+									class="form-control btn-details" maxlength="100" />
+							</div>
+						</groupbox>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix" height="5px" />
+			<groupbox class="col-xs-12" visible="false">
+				<caption class="preview-caption" label="Operaciones" />
+				<div class="col-xs-12">
+					<div class="col-xs-2" />
+					<div class="col-xs-3">
+						<button id="btnSearch"
+							class="btn btn-success btn-action" label="Buscar" />
+					</div>
+					<div class="col-xs-2" />
+					<div class="col-xs-3">
+						<button id="btnClear"
+							class="btn btn-success btn-action" label="Limpiar filtros" />
+					</div>
+				</div>
+			</groupbox>
+			<div class="clearfix" height="5px" />
+			<div class="col-xs-12">
+				<listbox id="listHistorialCarga"
+					selectedItem="@{composer.selectedConf}"
+					model="@{composer.listConfs}" class="records" mold="paging"
+					pageSize="5" multiple="true" nonselectableTags="">
+					<listhead>
+						<listheader label="Agrupacion" sort="auto"
+							align="center" />
+						<listheader label="Nombre" sort="auto"
+							align="center" />
+						<listheader label="Descripción" sort="auto"
+							align="center" />
+						<listheader label="Valor" sort="auto"
+							align="center" />
+						<listheader label="Valor 2" sort="auto"
+							align="center" />
+						<listheader label="Reinicio" sort="auto"
+							align="center" />
+						<listheader label="Modificar" sort="auto"
+							align="center" />
+					</listhead>
+					<listitem self="@{each='listConfs'}"
+						value="@{listConfs}">
+						<listcell label="@{listConfs.AGRUPACION}" />
+						<listcell label="@{listConfs.NOMBRE}" />
+						<listcell label="@{listConfs.DESCRIPCION}" />
+						<listcell label="@{listConfs.VALOR}" />
+						<listcell label="@{listConfs.VALOR2}" />
+						<listcell label="@{listConfs.REINICIARSTR}" />
+						<listcell>
+							<button id="btnModificar" label="Modificar" />
+						</listcell>
+					</listitem>
+				</listbox>
+			</div>
+
+			<popup id="popupModificacion"
+				class="panel panel-default panel-data">
+				<div class="panel-heading">
+					<n:h4>
+						<label value="Modificar Configuración"
+							style="font-size:16pt; font-weight:bold;" />
+					</n:h4>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<groupbox class="col-xs-12">
+							<caption class="preview-caption"
+								label="Modificar Configuración" />
+							<div class="row information-row">
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-6">
+											<n:h5>Agrupación:</n:h5>
+											<textbox
+												id="txtAgrupacionPopup" disabled="true" />
+										</div>
+										<div class="col-xs-6">
+											<n:h5>Nombre:</n:h5>
+											<textbox id="txtNombrePopup"
+												disabled="true" />
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-6">
+											<n:h5>Descripción:</n:h5>
+											<textbox
+												id="txtDescripcionPopup" disabled="true" />
+										</div>
+										<div class="col-xs-6">
+											<n:h5>Valor:</n:h5>
+											<textbox id="txtValorPopup"
+												disabled="true" />
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-6">
+											<n:h5>Valor 2:</n:h5>
+											<textbox id="txtValor2Popup"
+												disabled="true" />
+										</div>
+										<div class="col-xs-6">
+											<n:h5>
+												Requiere Reinicio:
+											</n:h5>
+											<textbox
+												id="txtReinicioPopup" disabled="true" />
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="col-xs-6">
+											<n:h5>Nuevo Valor:</n:h5>
+											<textbox
+												id="txtValorNuevoPopup" />
+											<label
+												id="errorTxtValorNuevoPopup" sclass="erroresLabel"
+												visible="false" />
+										</div>
+										<div class="col-xs-6">
+											<n:h5>Nuevo Valor 2:</n:h5>
+											<textbox
+												id="txtValor2NuevoPopup" />
+											<label
+												id="errorTxtValor2NuevoPopup" sclass="erroresLabel"
+												visible="false" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</groupbox>
+						<groupbox class="col-xs-12">
+							<caption class="preview-caption"
+								label="Modificar" />
+							<div class="row information-row">
+								<div class="col-xs-12">
+									<div class="row">
+										<div class="clearfix" />
+										<div class="col-xs-4" />
+										<div class="col-xs-4">
+											<button id="btnOperarCambio"
+												label="Modificar" class="btn btn-validate btn-action" />
+										</div>
+										<div class="col-xs-4" />
+									</div>
+								</div>
+							</div>
+						</groupbox>
+					</div>
+				</div>
+			</popup>
+
+		</div>
+	</window>
+</zk>

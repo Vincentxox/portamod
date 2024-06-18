@@ -1,0 +1,136 @@
+/*****************************/
+/** * * ESTILOS DEL BODY * **/
+html, body {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+
+.labelsJaes {
+	font-size: 16px;
+	line-height: 2.2;
+	font-family: inherit !important;
+}
+
+.z-page {
+	display: table;
+}
+
+ul, ul ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body {
+	color: #ffffff;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background: #00527a;
+	background: -moz-linear-gradient(top, #00527a 0%, #40a9c6 100%);
+	background: -webkit-linear-gradient(top, #00527a 0%, #40a9c6 100%);
+	background: linear-gradient(to bottom, #00527a 0%, #40a9c6 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00527a',
+		endColorstr='#40a9c6', GradientType=0);
+	-webkit-background-size: cover;
+	background-size: cover;
+	min-width: 900px;
+	background-repeat: no-repeat;
+	background-color: #40a9c6;
+}
+
+.z-window, .z-window-content {
+	background: Transparent;
+}
+
+.z-window-content {
+	padding: 0px;
+}
+
+h1, h2, h3, h4, h5 {
+	text-align: left;
+}
+
+h1, h2 {
+	font-size: 38px;
+	font-family: Movistar-Text-Regular;
+}
+
+h3 {
+	margin: 20px 10px;
+}
+
+h4, button {
+	font-family: Movistar-Text-Regular;
+}
+
+h5 {
+	font-size: 16px;
+}
+
+.titulo-seccion {
+	margin: 2% 0 1% 0;
+}
+
+.separador {
+	border-bottom: 2px solid #b5cdd8;
+	width: 100%;
+	margin: 0 0 4% 0;
+	display: block;
+}
+
+.thumbnail {
+	margin: 5% auto;
+	width: 100%;
+	max-width: 150px;
+}
+
+.thumbnail-ref {
+	display: none;
+}
+
+.visible {
+	display: block !important;
+}
+
+.no-visible {
+	display: none !important;
+}
+
+.container {
+	max-width: 750px;
+}
+
+.form-control, input {
+	border: 1px solid #00527A;
+	color: #00527A;
+}
+/*****************************/
+/** * * MEDIA QUERIES * **/
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+/* Small devices (tablets, 768px and up) */
+@media ( min-width : 768px) {
+	h1, h2 {
+		font-size: 25px;
+	}
+	.navbar-default .navbar-collapse {
+		border-color: transparent;
+		background-color: transparent;
+		color: #00527a;
+	}
+	.navbar-default .navbar-nav>li>a:hover {
+		color: #660167;
+	}
+	.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus,
+		.navbar-default .navbar-nav>.open>a:hover {
+		background-color: #660167;
+	}
+}
+/* Medium devices (desktops, 992px and up) @media (min-width: @screen-md-min) {
+}
+*/
+/* Large devices (large desktops, 1200px and up) @media (min-width: @screen-lg-min) {
+}
+*/

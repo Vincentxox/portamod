@@ -1,0 +1,57 @@
+<?page title="timeout" contentType="text/html;charset=UTF-8"?>
+
+<zk>
+ <style >
+
+ 	body {
+	 	background: transparent url(img/fndpage.jpg) repeat scroll 0% 0%;
+	    background-color: transparent;
+	    background-image: url(img/fndpage.jpg);
+	    background-repeat: repeat;
+	    background-attachment: scroll;
+	    background-position: 0% 0%;
+	    background-clip: border-box;
+	    background-origin: padding-box;
+	    background-size: auto auto;
+ 	}
+ 	
+ 	.frm {
+	 	background: transparent url(img/fnd_timeout.png) no-repeat scroll 0% 0%;
+	    background-color: transparent;
+	    background-image: url(img/fnd_timeout.png);
+	    background-repeat: no-repeat;
+	    background-attachment: scroll;
+	    background-position: center;
+	    background-clip: border-box;
+	    background-origin: padding-box;
+	    background-size: auto auto;
+ 	 }
+
+ </style>
+
+
+	<div align="center" style="padding-top: 100px;" >
+		
+		<div align="center"  sclass="frm">
+		<vlayout >
+	  <space /><space />
+		<image src="img/logo-movistar.png" height="80px"/>
+		<label value="Sesión finalizada"  style="font-size:25px; font-weight:bold;"/>
+		<label value="Tu sesión ha expirado" 
+		      style="font-size:20px; font-weight:bold;"/>
+		<label value="Para ingresar de nuevo a la aplicación:" 
+		      style="font-size:18px"/>   
+		<label value="ingresa desde el Menú Principal" 
+		      style="font-size:18px"/>     
+        <label value= "del Portal de Aplicaciones." 
+        	  style="font-size:18px"/>
+		<hlayout>
+			<label value=" " style="font-size:25px"/><a href=""><label value="" style="font-style: oblique; font-size:25px"/></a>
+		
+		</hlayout>
+		<space /><space /><space />
+		</vlayout>
+	 </div>
+	</div>
+
+</zk>

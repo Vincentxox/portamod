@@ -1,0 +1,123 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./wdwReportePortOutController" ?>
+<zk xmlns:n="native">
+	<window apply="com.ericsson.controller.ReportePortoutController"
+		id="wdwReportePortOutController"
+		class="panel panel-default panel-data">
+		<custom-attributes composerName="composer" />
+		<div class="panel-heading">
+			<n:h4>Reportería PortOut</n:h4>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row">
+						<groupbox class="col-xs-12">
+							<caption class="preview-caption"
+								label="Filtros" />
+							<div class="row information-row">
+								<groupbox class="col-xs-12">
+									<caption class="preview-caption"
+										label="Numeros" />
+									<div class="col-xs-12">
+										<div class="col-xs-3">
+											<n:h5>
+												Numero a portar:
+											</n:h5>
+										</div>
+										<div class="col-xs-3">
+											<textbox
+												id="txtNumeroPortar" class="form-control btn-details"
+												maxlength="10" />
+										</div>
+										<div class="col-xs-3" visible="false">
+											<n:h5>Creado por:</n:h5>
+										</div>
+										<div class="col-xs-3" visible="false">
+											<textbox id="txtCreadoPor"
+												class="form-control btn-details" maxlength="30" />
+										</div>
+									</div>
+								</groupbox>
+								<groupbox class="col-xs-12">
+									<caption class="preview-caption"
+										label="Fechas" />
+									<div class="col-xs-12">
+										<div class="col-xs-2">
+											<n:h5>Inicio:</n:h5>
+										</div>
+										<div class="col-xs-4">
+											<datebox id="dbIni"
+												constraint="no future:No es posible seleccionar una fecha en el futuro" />
+										</div>
+										<div class="col-xs-2">
+											<n:h5>Fin:</n:h5>
+										</div>
+										<div class="col-xs-4">
+											<datebox id="dbFin"
+												constraint="no future:No es posible seleccionar una fecha en el futuro" />
+										</div>
+									</div>
+								</groupbox>
+							</div>
+						</groupbox>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix" height="20px" />
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row">
+						<groupbox class="col-xs-12">
+							<caption class="preview-caption"
+								label="Operaciones" />
+							<div class="col-xs-12">
+								<div class="col-xs-1" />
+								<div class="col-xs-3">
+									<button id="btnSearch"
+										class="btn btn-success btn-action" label="Buscar" />
+								</div>
+								<div class="col-xs-1" />
+								<div class="col-xs-3">
+									<button id="btnClear"
+										class="btn btn-success btn-action" label="Limpiar filtros" />
+								</div>
+								<div class="col-xs-1" />
+								<div class="col-xs-3">
+									<button id="btnCreate"
+										class="btn btn-success btn-action" label="Crear Reporte" />
+								</div>
+							</div>
+						</groupbox>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix" height="20px" />
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row" id="divHist" visible="false">
+						<listbox id="listHistorial"
+							model="@{composer.listHist}" class="records" mold="paging"
+							pageSize="5" multiple="true" nonselectableTags="">
+							<listhead>
+								<listheader label="Numero Portar"
+									sort="auto" align="center" />
+								<listheader label="Observaciones"
+									sort="auto" align="center" />
+								<listheader label="Fecha creación"
+									sort="auto" align="center" />
+							</listhead>
+							<listitem self="@{each='listHist'}"
+								value="@{listHist}">
+								<listcell
+									label="@{listHist.NUMERO_PORTAR}" />
+								<listcell
+									label="@{listHist.OBSERVACIONES}" />
+								<listcell label="@{listHist.CREADO_EL}" />
+							</listitem>
+						</listbox>
+					</div>
+				</div>
+			</div>
+		</div>
+	</window>
+</zk>

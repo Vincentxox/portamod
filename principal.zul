@@ -1,0 +1,157 @@
+<?page title="Reintento automático" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" type="image/x-icon" href="/img/logo.ico"?>
+<?meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" ?>
+<?link rel="stylesheet" type="text/css" href="/bootstrap/v3/bootstrap/css/bootstrap.min.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/style.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/menu.css" ?>
+<?link rel="stylesheet" type="text/css" href="/css/windows.css" ?>
+
+<zk xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:zk="http://www.zkoss.org/2005/zk" xmlns:n="native"
+	xmlns:w="http://www.zkoss.org/2005/zk/client"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js" />
+	<script type="text/javascript"
+		src="bootstrap/v3/bootstrap/js/bootstrap.min.js" />
+	<script type="text/javascript" src="js/botones.js" />
+	<script type="text/javascript" src="js/menu.js" />
+
+	<window apply="com.ericsson.base.ApplicationComposer" id="wdwMenu"
+		defaultActionOnShow="moveDown" contentStyle="overflow:auto;"
+		width="100%" height="100%">
+
+		<!-- Header -->
+		<div class="header principal-header">
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="col-xs-12 col-sm-3 col-sm-push-9">
+						<image class="logo" src="img/logo-movistar.png" />
+					</div>
+					<div class="col-xs-12 col-sm-9 col-sm-pull-3">
+						<div class="row">
+							<div class="col-xs-12 col-sm-5">
+								<label id="lblModuleTitle"
+									class="titulo-app" />
+							</div>
+							<div class="col-xs-12 col-sm-7">
+								<div class="row">
+									<div class="col-xs-12 col-sm-6">
+										<div class="info-login">
+											<image src="img/user.png" />
+											<label id="lblUser"
+												value="ADMINLEGAL" />
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6">
+										<div class="info-login">
+											<image
+												src="img/calendar.png" />
+											<label id="lblDate" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="header static-header">
+			<div class="app">
+				<div class="text_inblock">
+					<label id="lblSectionTitleStatic"
+						value="Reintento Automático" />
+				</div>
+			</div>
+		</div>
+
+		<div class="header dynamic-header">
+			<div class="app">
+				<div class="text_inblock">
+					<label id="lblSectionTitleDynamic"
+						value="Reintento Automático" />
+				</div>
+			</div>
+		</div>
+
+		<!-- Menu -->
+		<div class="menu">
+			<div class="background-menu"></div>
+			<menubar id="menubar" orient="vertical" autodrop="true"
+				class="principal-menu" action="show: slideDown; hide: slideUp">
+				<menu label="Reintento Automático">
+					<menupopup>
+						<menuitem label="Reportería Reintentos"
+							id="menuItemListado" w:onClick="show_menu();">
+							<attribute name="onClick">
+								incContainer.setSrc(null);
+								incContainer.setSrc("zuls/reporteria-listado.zul");
+								lblSectionTitleStatic.setValue("Listado de reintentos");
+								lblSectionTitleDynamic.setValue("Listado de reintentos");
+							</attribute>
+						</menuitem>
+						<menuitem label="Configuraciones" id="menuItemConfiguraciones"
+							w:onClick="show_menu();">
+							<attribute name="onClick">
+								incContainer.setSrc(null);
+								incContainer.setSrc("zuls/mantenedor-configuraciones.zul");
+								lblSectionTitleStatic.setValue("Mantenimiento de configuraciones");
+								lblSectionTitleDynamic.setValue("Mantenimiento de configuraciones");
+							</attribute>
+						</menuitem>
+						<menuitem label="Lista Blanca" id="menuItemListaBlanca"
+							w:onClick="show_menu();">
+							<attribute name="onClick">
+								incContainer.setSrc(null);
+								incContainer.setSrc("zuls/lista-blanca.zul");
+								lblSectionTitleStatic.setValue("Lista Blanca");
+								lblSectionTitleDynamic.setValue("Lista Blanca");
+							</attribute>
+						</menuitem>
+						<menuitem label="Reporte PortOut" id="menuItemPortOut"
+							w:onClick="show_menu();">
+							<attribute name="onClick">
+								incContainer.setSrc(null);
+								incContainer.setSrc("zuls/reporteria-portout.zul");
+								lblSectionTitleStatic.setValue("Reporte PortOut");
+								lblSectionTitleDynamic.setValue("Reporte PortOut");
+							</attribute>
+						</menuitem>
+						<menuitem label="Cancelar Reintento" id="menuItemCancelar"
+							w:onClick="show_menu();">
+							<attribute name="onClick">
+								incContainer.setSrc(null);
+								incContainer.setSrc("zuls/cancelar.zul");
+								lblSectionTitleStatic.setValue("Cancelar Reintento");
+								lblSectionTitleDynamic.setValue("Cancelar Reintento");
+							</attribute>
+						</menuitem>
+							<menuitem label="Reingresar Portabilidad" id="menuItemReintentar"
+							w:onClick="show_menu();">
+							<attribute name="onClick">
+								incContainer.setSrc(null);
+								incContainer.setSrc("zuls/reiniciarReintentos.zul");
+								lblSectionTitleStatic.setValue("Reingresar portabilidad");
+								lblSectionTitleDynamic.setValue("Reingresar portabilidad");
+							</attribute>
+						</menuitem>
+					</menupopup>
+				</menu>
+			</menubar>
+			<a class="ico-menu" onClick='Clients.evalJavaScript("show_menu()")'>
+				<image src="img/cerrar.png" />
+			</a>
+		</div>
+
+		<!-- Page's Container -->
+		<div id="divContainerInclude" class="container-include"
+			align="center" width="100%">
+			<include id="incContainer" />
+			<div class="clearfix"></div>
+		</div>
+
+	</window>
+
+</zk>

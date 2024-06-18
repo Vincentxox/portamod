@@ -1,0 +1,162 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" root="./wdwReporteListadoController" ?>
+<zk xmlns:n="native">
+	<window apply="com.ericsson.controller.ReporteListadoController"
+		id="wdwReporteListadoController"
+		class="panel panel-default panel-data">
+		<custom-attributes composerName="composer" />
+		<div class="panel-heading">
+			<n:h4>Reportería Listado de Reintentos</n:h4>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row">
+						<groupbox class="col-xs-12">
+							<caption class="preview-caption"
+								label="Filtros" />
+							<div class="row information-row">
+								<groupbox class="col-xs-12">
+									<caption class="preview-caption"
+										label="Numeros" />
+									<div class="col-xs-12">
+										<div class="col-xs-4">
+											<n:h5>
+												Tipo:
+											</n:h5>
+											<combobox id="cbTipoProducto"  >
+												<comboitem value="todas" label="Todas" />
+												<comboitem value="postPago" label="PostPago" />
+												<comboitem value="prePago" label="Prepago" />
+											</combobox>
+										</div>
+										<div class="col-xs-4">
+											<n:h5>
+												Numero a portar:
+											</n:h5>
+											<textbox
+												id="txtNumeroPortar" class="form-control btn-details"
+												maxlength="10" />
+										</div>
+										
+										<div class="col-xs-4">
+											<n:h5>
+												Numero temporal:
+											</n:h5>
+											<textbox
+												id="txtNumeroTemporal" class="form-control btn-details"
+												maxlength="10" />
+										</div>
+									</div>
+								</groupbox>
+								<groupbox class="col-xs-12">
+									<caption class="preview-caption"
+										label="Fechas" />
+									<div class="col-xs-12">
+										<div class="col-xs-2">
+											<n:h5>Inicio:</n:h5>
+										</div>
+										<div class="col-xs-4">
+											<datebox id="dbIni"
+												constraint="no future:No es posible seleccionar una fecha en el futuro" />
+										</div>
+										<div class="col-xs-2">
+											<n:h5>Fin:</n:h5>
+										</div>
+										<div class="col-xs-4">
+											<datebox id="dbFin"
+												constraint="no future:No es posible seleccionar una fecha en el futuro" />
+										</div>
+									</div>
+								</groupbox>
+							</div>
+						</groupbox>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix" height="20px" />
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row">
+						<groupbox class="col-xs-12">
+							<caption class="preview-caption"
+								label="Operaciones" />
+							<div class="col-xs-12">
+								<div class="col-xs-1" />
+								<div class="col-xs-3">
+									<button id="btnSearch"
+										class="btn btn-success btn-action" label="Buscar" />
+								</div>
+								<div class="col-xs-1" />
+								<div class="col-xs-3">
+									<button id="btnClear"
+										class="btn btn-success btn-action" label="Limpiar filtros" />
+								</div>
+								<div class="col-xs-1" />
+								<div class="col-xs-3">
+									<button id="btnCreate"
+										class="btn btn-success btn-action" label="Crear Reporte" />
+								</div>
+							</div>
+						</groupbox>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix" height="20px" />
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="row" id="divHist" visible="false">
+						<listbox id="listHistorial"
+							model="@{composer.listHist}" class="records" mold="paging"
+							pageSize="5" multiple="true" nonselectableTags="">
+							<listhead>
+								<listheader label="Numero Portar"
+									sort="auto" align="center" />
+								<listheader label="Numero Temporal"
+									sort="auto" align="center" />
+								<listheader label="Nombre" sort="auto"
+									align="center" />								
+								<listheader label="Estado Reintentos"
+									sort="auto" align="center" />
+								<listheader label="Reintentos"
+									sort="auto" align="center" />
+								<listheader label="Fecha Portacion"
+									sort="auto" align="center" />
+								<listheader label="Operador"
+									sort="auto" align="center" />
+								<listheader label="Distribuidor"
+									sort="auto" align="center" />
+								<listheader label="Ejecutivo"
+									sort="auto" align="center" />
+								<listheader label="ID Portabilidad"
+									sort="auto" align="center"  width="125px"  />
+							</listhead>
+							<listitem self="@{each='listHist'}"
+								value="@{listHist}">
+								<listcell
+									label="@{listHist.NUMEROPORTAR}" />
+								<listcell
+									label="@{listHist.NUMEROTEMPORAL}" />
+								<listcell label="@{listHist.DESNOMBRE}" />
+									
+								<listcell
+									label="@{listHist.ESTADORETRIES}" />
+								<listcell label="@{listHist.RETRIES}" />
+								
+								<listcell
+									label="@{listHist.FECHAPORTACION,converter='org.zkoss.zkplus.databind.DateFormatConverter'}"  self="@{format(dd/MM/yyyy)}" />
+								<listcell
+									label="@{listHist.OPERADORDONANTE}" />
+								<listcell
+									label="@{listHist.DISTRIBUIDOR}" />
+								<listcell
+									label="@{listHist.EJECUTIVO}" />						
+								<listcell 
+									label="@{listHist.IDPORTABILIDAD}" style="width: 125px;" />
+							</listitem>
+						</listbox>
+					</div>
+				</div>
+			</div>
+		</div>
+	</window>
+</zk>
